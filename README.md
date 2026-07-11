@@ -13,7 +13,7 @@ directly, services offered, and clear contact channels.
 The page reads top to bottom as a storefront:
 
 1. **Hero** — value prop plus the two contact actions up front:
-   `help@spillerstech.us` and `(260) 442-2113`.
+   `help@spillerstech.us` and `(315) 898-1121`.
 2. **Products** — the commercial headliners, each with an inquire CTA:
    - **AnchorDesk Hosting** — managed helpdesk hosting for MSPs and IT teams.
    - **ComFlow** — SIP voice reception; the line that answers our own phone.
