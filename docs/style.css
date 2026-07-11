@@ -1,0 +1,438 @@
+/* ── Spillers Technology — spillerstech.us ─────────────────
+   Dark premium. Same brand as the campfire site, after hours:
+   embers traded for polish. Rokkitt heads, Lato body, one
+   restrained amber accent. No animation, no frameworks. */
+
+:root {
+	--bg:        #0b0d10;
+	--bg-raise:  #10141a;
+	--panel:     #151a20;
+	--panel-edge:#232b34;
+	--text:      #e8eaed;
+	--muted:     #9aa3ad;
+	--faint:     #6b7580;
+	--accent:    #e8973a;
+	--accent-hi: #f4b269;
+	--accent-dim:rgba(232, 151, 58, 0.12);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
+@media (prefers-reduced-motion: reduce) {
+	html { scroll-behavior: auto; }
+}
+
+body {
+	background: var(--bg);
+	color: var(--text);
+	font-family: 'Lato', 'Segoe UI', sans-serif;
+	font-weight: 300;
+	font-size: 17px;
+	line-height: 1.65;
+	-webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+	font-family: 'Rokkitt', Georgia, serif;
+	font-weight: 500;
+	line-height: 1.2;
+}
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { color: var(--accent-hi); }
+
+svg.feather {
+	width: 1.1em;
+	height: 1.1em;
+	vertical-align: -0.18em;
+	stroke-width: 1.8;
+}
+
+/* ── Topbar ───────────────────────────────────────────── */
+.topbar {
+	position: sticky;
+	top: 0;
+	z-index: 10;
+	display: flex;
+	align-items: center;
+	gap: 2rem;
+	padding: 0.85rem clamp(1.25rem, 5vw, 3.5rem);
+	background: rgba(11, 13, 16, 0.88);
+	backdrop-filter: blur(10px);
+	border-bottom: 1px solid var(--panel-edge);
+}
+
+.wordmark {
+	display: flex;
+	align-items: center;
+	gap: 0.65rem;
+	color: var(--text);
+}
+.wordmark:hover { color: var(--text); }
+.mark {
+	display: grid;
+	place-items: center;
+	width: 2.1rem;
+	height: 2.1rem;
+	border-radius: 0.5rem;
+	background: var(--accent-dim);
+	border: 1px solid var(--accent);
+	color: var(--accent);
+	font-family: 'Rokkitt', Georgia, serif;
+	font-weight: 700;
+	font-size: 0.95rem;
+	letter-spacing: 0.02em;
+}
+.wordmarkText {
+	font-family: 'Rokkitt', Georgia, serif;
+	font-size: 1.15rem;
+	letter-spacing: 0.01em;
+	white-space: nowrap;
+}
+.wordmarkText strong { font-weight: 700; }
+
+.topnav {
+	display: flex;
+	gap: 1.5rem;
+	margin-left: auto;
+}
+.topnav a {
+	color: var(--muted);
+	font-size: 0.92rem;
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+	font-weight: 400;
+}
+.topnav a:hover { color: var(--text); }
+
+.topPhone {
+	display: flex;
+	align-items: center;
+	gap: 0.45rem;
+	color: var(--text);
+	font-size: 0.95rem;
+	font-weight: 400;
+	padding: 0.4rem 0.85rem;
+	border: 1px solid var(--panel-edge);
+	border-radius: 2rem;
+	white-space: nowrap;
+}
+.topPhone:hover { border-color: var(--accent); color: var(--accent-hi); }
+.topPhone svg.feather { color: var(--accent); }
+
+/* ── Layout bands ─────────────────────────────────────── */
+main { display: block; }
+
+.band {
+	max-width: 68rem;
+	margin: 0 auto;
+	padding: 4.5rem clamp(1.25rem, 5vw, 3.5rem);
+}
+.bandAlt {
+	max-width: none;
+	background: var(--bg-raise);
+	border-top: 1px solid var(--panel-edge);
+	border-bottom: 1px solid var(--panel-edge);
+}
+.bandAlt > * {
+	max-width: 68rem;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.sectionHead { margin-bottom: 2.5rem; }
+.sectionHead h2 {
+	font-size: 2rem;
+	margin-bottom: 0.5rem;
+}
+.sectionHead h2::after {
+	content: '';
+	display: block;
+	width: 3rem;
+	height: 2px;
+	margin-top: 0.6rem;
+	background: var(--accent);
+}
+.sectionHead p { color: var(--muted); max-width: 44rem; }
+
+/* ── Hero ─────────────────────────────────────────────── */
+.hero {
+	max-width: 68rem;
+	margin: 0 auto;
+	padding: clamp(4rem, 10vw, 7rem) clamp(1.25rem, 5vw, 3.5rem) 4.5rem;
+	background:
+		radial-gradient(ellipse 60rem 22rem at 50% -8rem, var(--accent-dim), transparent 70%);
+}
+
+.kicker {
+	color: var(--accent);
+	font-size: 0.85rem;
+	font-weight: 700;
+	letter-spacing: 0.18em;
+	text-transform: uppercase;
+	margin-bottom: 1.1rem;
+}
+
+.hero h1 {
+	font-size: clamp(2.1rem, 4.5vw, 3.3rem);
+	max-width: 48rem;
+	margin-bottom: 1.4rem;
+}
+.hero .accent { color: var(--accent); }
+
+.heroLead {
+	color: var(--muted);
+	font-size: 1.12rem;
+	max-width: 42rem;
+	margin-bottom: 2.2rem;
+}
+
+.ctaRow {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.9rem;
+	margin-bottom: 1rem;
+}
+
+.heroNote {
+	color: var(--faint);
+	font-size: 0.95rem;
+	font-style: italic;
+}
+
+/* ── Buttons ──────────────────────────────────────────── */
+.btn {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.55rem;
+	padding: 0.75rem 1.4rem;
+	border-radius: 0.55rem;
+	font-weight: 700;
+	font-size: 0.98rem;
+	letter-spacing: 0.01em;
+	border: 1px solid transparent;
+}
+.btnPrimary {
+	background: var(--accent);
+	color: #17110a;
+}
+.btnPrimary:hover { background: var(--accent-hi); color: #17110a; }
+.btnGhost {
+	border-color: var(--panel-edge);
+	color: var(--text);
+	font-weight: 400;
+}
+.btnGhost:hover { border-color: var(--accent); color: var(--accent-hi); }
+
+.textLink {
+	font-size: 0.95rem;
+	font-weight: 400;
+}
+
+/* ── Products ─────────────────────────────────────────── */
+.productGrid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+	gap: 1.5rem;
+}
+
+.productCard {
+	display: flex;
+	flex-direction: column;
+	gap: 0.85rem;
+	background: var(--panel);
+	border: 1px solid var(--panel-edge);
+	border-radius: 0.9rem;
+	padding: 2rem;
+}
+.productCard:hover { border-color: rgba(232, 151, 58, 0.45); }
+
+.productTop {
+	display: flex;
+	align-items: center;
+	gap: 0.7rem;
+}
+.productTop svg.feather {
+	width: 1.5em;
+	height: 1.5em;
+	color: var(--accent);
+}
+.productTag {
+	color: var(--faint);
+	font-size: 0.8rem;
+	font-weight: 700;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+}
+
+.productCard h3 { font-size: 1.65rem; }
+.productPitch {
+	color: var(--accent-hi);
+	font-size: 1.05rem;
+	font-style: italic;
+}
+.productCard > p { color: var(--muted); }
+
+.productPoints {
+	list-style: none;
+	color: var(--muted);
+	font-size: 0.97rem;
+	display: grid;
+	gap: 0.45rem;
+	margin: 0.25rem 0 0.5rem;
+}
+.productPoints li {
+	padding-left: 1.35rem;
+	position: relative;
+}
+.productPoints li::before {
+	content: '\2713';
+	position: absolute;
+	left: 0;
+	color: var(--accent);
+}
+
+.productActions {
+	margin-top: auto;
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 1.1rem;
+	padding-top: 0.75rem;
+}
+
+/* ── Services ─────────────────────────────────────────── */
+.servicesPanel { padding-bottom: 0.5rem; }
+
+.servicesLead {
+	color: var(--muted);
+	font-size: 1.08rem;
+	max-width: 46rem;
+	margin-bottom: 2.25rem;
+}
+
+.serviceGrid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+	gap: 1.25rem;
+	margin-bottom: 2.25rem;
+}
+
+.serviceItem {
+	background: var(--panel);
+	border: 1px solid var(--panel-edge);
+	border-radius: 0.75rem;
+	padding: 1.4rem;
+}
+.serviceItem svg.feather {
+	width: 1.4em;
+	height: 1.4em;
+	color: var(--accent);
+	margin-bottom: 0.65rem;
+}
+.serviceItem h4 {
+	font-size: 1.12rem;
+	margin-bottom: 0.35rem;
+}
+.serviceItem p {
+	color: var(--muted);
+	font-size: 0.94rem;
+	line-height: 1.55;
+}
+
+.servicesCta { padding-bottom: 0.5rem; }
+
+/* ── Open source ──────────────────────────────────────── */
+.osGrid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+	gap: 1.25rem;
+}
+
+.osCard {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+	background: var(--panel);
+	border: 1px solid var(--panel-edge);
+	border-radius: 0.75rem;
+	padding: 1.5rem;
+	color: var(--text);
+}
+.osCard:hover {
+	border-color: rgba(232, 151, 58, 0.45);
+	color: var(--text);
+}
+.osCard svg.feather {
+	width: 1.4em;
+	height: 1.4em;
+	color: var(--accent);
+	margin-bottom: 0.3rem;
+}
+.osCard h4 { font-size: 1.2rem; }
+.osCard p {
+	color: var(--muted);
+	font-size: 0.94rem;
+	line-height: 1.55;
+	flex: 1;
+}
+.osLang {
+	color: var(--faint);
+	font-size: 0.78rem;
+	font-weight: 700;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+}
+
+/* ── Support ──────────────────────────────────────────── */
+.supportPanel { text-align: center; padding: 0.5rem 0; }
+.supportPanel h2 {
+	font-size: 2rem;
+	margin-bottom: 1rem;
+}
+.supportLead {
+	color: var(--muted);
+	font-size: 1.1rem;
+	max-width: 42rem;
+	margin: 0 auto 0.8rem;
+}
+.supportAlt { color: var(--faint); }
+
+/* ── Footer ───────────────────────────────────────────── */
+.footer {
+	max-width: 68rem;
+	margin: 0 auto;
+	padding: 3rem clamp(1.25rem, 5vw, 3.5rem) 3.5rem;
+	text-align: center;
+}
+
+.footerLinks {
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+	gap: 1.75rem;
+	margin-bottom: 1.25rem;
+}
+.footerLinks a {
+	color: var(--muted);
+	font-size: 0.95rem;
+}
+.footerLinks a:hover { color: var(--accent-hi); }
+
+.footerFine {
+	color: var(--faint);
+	font-size: 0.9rem;
+}
+
+/* ── Responsive ───────────────────────────────────────── */
+@media (max-width: 860px) {
+	.topnav { display: none; }
+	.topPhone { margin-left: auto; }
+}
+
+@media (max-width: 480px) {
+	.wordmarkText { display: none; }
+	.productCard { padding: 1.4rem; }
+	.ctaRow .btn { width: 100%; justify-content: center; }
+}
