@@ -19,9 +19,26 @@
   --ivory-hi: #fbf7f0;
   --ink: #171419;
   --ink-muted: #645f63;
-  --display: 'Bodoni Moda', Didot, 'Times New Roman', serif;
+  /* Fraunces replaces Bodoni Moda. A Didone's hairline serifs get eaten by
+     antialiasing on dark backgrounds and fall apart under ~2rem; Fraunces keeps
+     solid stems and carries a real optical-size axis. Reserve it for display
+     sizes — anything small or paragraph-length uses --body. */
+  --display: 'Fraunces', 'Iowan Old Style', Georgia, serif;
   --body: 'Manrope', 'Segoe UI', sans-serif;
   --shadow: 0 2rem 6rem rgba(0, 0, 0, .38);
+  --shadow-lift: 0 .35rem 1rem rgba(0, 0, 0, .3), 0 2.5rem 5rem rgba(0, 0, 0, .45);
+
+  /* Motion. One easing curve and three speeds, so everything moves in sympathy. */
+  --ease: cubic-bezier(.22, .61, .36, 1);
+  --dur-fast: .18s;
+  --dur: .28s;
+  --dur-slow: .55s;
+
+  /* Focus ring, re-pointed to ink inside the light band. */
+  --focus: var(--gold-hi);
+
+  color-scheme: dark;
+  accent-color: var(--gold);
 }
 
 * {
@@ -46,6 +63,8 @@ body {
   color: var(--text);
   font: 400 16px/1.7 var(--body);
   -webkit-font-smoothing: antialiased;
+  font-optical-sizing: auto;
+  font-synthesis: none;
   text-rendering: optimizeLegibility;
 }
 
@@ -82,8 +101,8 @@ h2,
 h3,
 h4 {
   font-family: var(--display);
-  font-weight: 500;
-  line-height: 1.02;
+  font-weight: 600;
+  line-height: 1.06;
   text-wrap: balance;
 }
 
@@ -91,11 +110,34 @@ p {
   text-wrap: pretty;
 }
 
+img,
+svg {
+  max-width: 100%;
+}
+
 a {
   color: var(--gold);
   text-decoration: none;
   text-underline-offset: .18em;
-  transition: color .2s ease, border-color .2s ease, background-color .2s ease, transform .2s ease, opacity .2s ease;
+}
+
+/* Anything that reacts to a pointer shares one motion signature. Previously only
+   `a` carried a transition, so the card lifts landed as an instant snap. */
+a,
+.btn,
+.mark,
+.showcaseCard,
+.collectionCard,
+.studioRail li,
+.releaseConsole,
+.mobileMenu summary {
+  transition:
+    color var(--dur-fast) var(--ease),
+    border-color var(--dur) var(--ease),
+    background-color var(--dur) var(--ease),
+    box-shadow var(--dur) var(--ease),
+    transform var(--dur) var(--ease),
+    opacity var(--dur) var(--ease);
 }
 
 a:hover {
@@ -104,9 +146,38 @@ a:hover {
 
 a:focus-visible,
 button:focus-visible,
-summary:focus-visible {
-  outline: 3px solid var(--gold-hi);
+summary:focus-visible,
+[tabindex]:focus-visible {
+  outline: 3px solid var(--focus);
   outline-offset: 4px;
+  border-radius: 2px;
+}
+
+/* Scrollbar, tuned to the satin-black surface rather than the OS default. */
+* {
+  scrollbar-color: rgba(232, 189, 114, .32) transparent;
+  scrollbar-width: thin;
+}
+
+::-webkit-scrollbar {
+  width: 11px;
+  height: 11px;
+}
+
+::-webkit-scrollbar-thumb {
+  border: 3px solid transparent;
+  border-radius: 99px;
+  background: rgba(232, 189, 114, .3);
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(232, 189, 114, .5);
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
 }
 
 .skipLink {
@@ -140,7 +211,20 @@ summary:focus-visible {
   padding: .8rem clamp(1.25rem, 4vw, 4.5rem);
   border-bottom: 1px solid var(--line);
   background: rgba(8, 8, 10, .78);
+  -webkit-backdrop-filter: blur(20px) saturate(135%);
   backdrop-filter: blur(20px) saturate(135%);
+}
+
+/* Hairline of gold along the header's lower edge, brightest under the wordmark. */
+.topbar::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  bottom: -1px;
+  left: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(232, 189, 114, .4) 18%, transparent 55%);
+  pointer-events: none;
 }
 
 .wordmark {
@@ -163,7 +247,8 @@ summary:focus-visible {
   border: 1px solid rgba(232, 189, 114, .75);
   background: linear-gradient(155deg, rgba(232, 189, 114, .13), transparent 62%);
   color: var(--gold-hi);
-  font: 600 .78rem/1 var(--display);
+  font: 800 .74rem/1 var(--body);
+  letter-spacing: .04em;
   clip-path: polygon(50% 0, 100% 18%, 88% 100%, 12% 100%, 0 18%);
 }
 
@@ -177,16 +262,28 @@ summary:focus-visible {
   background: var(--gold-hi);
   box-shadow: 0 0 .8rem var(--gold-hi);
   transform: rotate(45deg);
+  transition: box-shadow var(--dur) var(--ease);
+}
+
+@media (hover: hover) {
+  .wordmark:hover .mark {
+    border-color: var(--gold-hi);
+    background: linear-gradient(155deg, rgba(232, 189, 114, .26), transparent 62%);
+  }
+
+  .wordmark:hover .mark::after {
+    box-shadow: 0 0 1.4rem var(--gold-hi), 0 0 .4rem var(--gold-hi);
+  }
 }
 
 .wordmarkText {
   white-space: nowrap;
-  font: 500 1.12rem/1 var(--display);
-  letter-spacing: -.015em;
+  font: 500 1.16rem/1 var(--display);
+  letter-spacing: -.005em;
 }
 
 .wordmarkText strong {
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .topnav {
@@ -306,7 +403,8 @@ summary:focus-visible {
   min-height: 3.25rem;
   border-bottom: 1px solid var(--line);
   color: var(--text);
-  font: 500 1.4rem/1.2 var(--display);
+  font: 600 1.35rem/1.2 var(--display);
+  letter-spacing: -.015em;
 }
 
 .mobileMenu nav a:last-child {
@@ -432,7 +530,7 @@ summary:focus-visible {
   max-width: 46rem;
   margin-bottom: 1.6rem;
   font-size: clamp(4rem, 7vw, 7.1rem);
-  letter-spacing: -.055em;
+  letter-spacing: -.03em;
 }
 
 .hero h1 em {
@@ -440,9 +538,16 @@ summary:focus-visible {
   display: block;
   color: transparent;
   font-weight: 500;
-  background: linear-gradient(105deg, var(--gold-hi) 5%, var(--gold) 42%, #f3b4c8 76%, var(--violet));
+  background: linear-gradient(105deg, var(--gold-hi) 5%, var(--gold) 30%, #f3b4c8 55%, var(--violet) 72%, var(--gold-hi) 96%);
+  background-size: 220% 100%;
   -webkit-background-clip: text;
   background-clip: text;
+  animation: sheen 14s var(--ease) infinite;
+}
+
+@keyframes sheen {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
 }
 
 .hero h1 em::after {
@@ -469,6 +574,9 @@ summary:focus-visible {
 }
 
 .btn {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -481,21 +589,49 @@ summary:focus-visible {
   max-width: 100%;
 }
 
-.btn:hover {
-  transform: translateY(-2px);
+/* Light sweeping across the face of the button on hover. */
+.btn::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 35%, rgba(255, 255, 255, .42) 50%, transparent 65%);
+  opacity: 0;
+  transform: translateX(-100%);
+}
+
+.btn:active {
+  transform: translateY(0) scale(.985);
+  transition-duration: var(--dur-fast);
+}
+
+@media (hover: hover) {
+  .btn:hover {
+    transform: translateY(-2px);
+  }
+
+  .btn:hover::before {
+    opacity: 1;
+    transform: translateX(100%);
+    transition: transform .75s var(--ease), opacity .15s linear;
+  }
 }
 
 .btnPrimary {
   border-color: var(--gold);
   background: linear-gradient(115deg, var(--gold-hi), var(--gold));
-  box-shadow: 0 .8rem 2.2rem rgba(232, 189, 114, .12);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .45),
+    0 .8rem 2.2rem rgba(232, 189, 114, .12);
   color: var(--ink);
 }
 
 .btnPrimary:hover {
-  background: var(--gold-hi);
+  background: linear-gradient(115deg, #fff0d2, var(--gold-hi));
   color: var(--ink);
-  box-shadow: 0 1rem 2.8rem rgba(232, 189, 114, .2);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .55),
+    0 1rem 2.8rem rgba(232, 189, 114, .26);
 }
 
 .btnGhost {
@@ -506,6 +642,7 @@ summary:focus-visible {
 
 .btnGhost:hover {
   border-color: var(--gold);
+  background: rgba(232, 189, 114, .07);
   color: var(--gold-hi);
 }
 
@@ -538,6 +675,14 @@ summary:focus-visible {
     var(--panel);
   box-shadow: var(--shadow), 0 0 7rem rgba(173, 144, 255, .08);
   transform: perspective(70rem) rotateY(-3deg) rotateZ(.7deg);
+}
+
+@media (hover: hover) {
+  .releaseConsole:hover {
+    border-color: rgba(232, 189, 114, .42);
+    box-shadow: var(--shadow-lift), 0 0 7rem rgba(173, 144, 255, .12);
+    transform: perspective(70rem) rotateY(-1deg) rotateZ(.25deg) translateY(-.2rem);
+  }
 }
 
 .releaseConsole::before {
@@ -631,7 +776,8 @@ summary:focus-visible {
 }
 
 .releaseList strong {
-  font: 500 1rem/1.2 var(--display);
+  font: 700 .93rem/1.25 var(--body);
+  letter-spacing: -.005em;
 }
 
 .releaseList small {
@@ -657,7 +803,7 @@ summary:focus-visible {
   height: 2.3rem;
   border: 1px solid currentColor;
   border-radius: 50%;
-  font: 600 .8rem/1 var(--display);
+  font: 800 .78rem/1 var(--body);
 }
 
 .glyphGold { color: var(--gold); background: var(--gold-low); }
@@ -693,6 +839,20 @@ summary:focus-visible {
   border-right: 1px solid var(--line);
 }
 
+@media (hover: hover) {
+  .studioRail li:hover {
+    background: rgba(232, 189, 114, .05);
+  }
+
+  .studioRail li:hover span {
+    color: rgba(232, 189, 114, .75);
+  }
+}
+
+.studioRail span {
+  transition: color var(--dur) var(--ease);
+}
+
 .studioRail li:last-child {
   border: 0;
 }
@@ -713,13 +873,14 @@ summary:focus-visible {
 
 .studioRail strong {
   color: var(--text);
-  font: 500 1rem/1.25 var(--display);
+  font: 700 .92rem/1.3 var(--body);
+  letter-spacing: -.005em;
 }
 
 .studioRail small {
   margin-top: .18rem;
   color: var(--faint);
-  font-size: .66rem;
+  font-size: .7rem;
 }
 
 .band {
@@ -746,7 +907,7 @@ summary:focus-visible {
 .sectionHead h2 {
   max-width: 44rem;
   font-size: clamp(2.8rem, 5vw, 4.8rem);
-  letter-spacing: -.04em;
+  letter-spacing: -.025em;
 }
 
 .sectionHead > p {
@@ -763,6 +924,7 @@ summary:focus-visible {
   --card-accent: var(--gold);
   position: relative;
   overflow: hidden;
+  isolation: isolate;
   display: flex;
   flex-direction: column;
   border: 1px solid var(--line);
@@ -782,9 +944,40 @@ summary:focus-visible {
   background: linear-gradient(90deg, transparent, var(--card-accent), transparent);
 }
 
-.showcaseCard:hover {
+/* Accent-tinted bloom that rises from the card's own colour on hover. */
+.showcaseCard::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: radial-gradient(120% 60% at 50% 0%, color-mix(in srgb, var(--card-accent) 12%, transparent), transparent 70%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--dur-slow) var(--ease);
+}
+
+@media (hover: hover) {
+  .showcaseCard:hover {
+    border-color: color-mix(in srgb, var(--card-accent) 48%, transparent);
+    box-shadow:
+      var(--shadow-lift),
+      0 0 4rem color-mix(in srgb, var(--card-accent) 14%, transparent);
+    transform: translateY(-.3rem);
+  }
+
+  .showcaseCard:hover::after {
+    opacity: 1;
+  }
+
+  .productShot:hover img {
+    filter: saturate(1.06) contrast(1.02);
+    transform: scale(1.018);
+  }
+}
+
+.showcaseCard:focus-within {
   border-color: color-mix(in srgb, var(--card-accent) 48%, transparent);
-  transform: translateY(-.2rem);
+  box-shadow: var(--shadow-lift);
 }
 
 .showcaseViolet {
@@ -817,11 +1010,6 @@ summary:focus-visible {
   transition: transform .5s ease, filter .3s ease;
 }
 
-.productShot:hover img {
-  filter: saturate(1.06) contrast(1.02);
-  transform: scale(1.018);
-}
-
 .showcaseBody {
   display: flex;
   flex: 1;
@@ -847,13 +1035,14 @@ summary:focus-visible {
 
 .showcaseBody h3 {
   font-size: clamp(2.35rem, 4vw, 3.25rem);
-  letter-spacing: -.035em;
+  letter-spacing: -.022em;
 }
 
 .productPitch {
-  margin: .3rem 0 1rem;
+  margin: .45rem 0 1rem;
   color: var(--card-accent);
-  font: italic 500 1.12rem/1.4 var(--display);
+  font: italic 500 1.28rem/1.4 var(--display);
+  letter-spacing: -.01em;
 }
 
 .showcaseBody > p:not(.productPitch) {
@@ -899,6 +1088,9 @@ summary:focus-visible {
 }
 
 .lightBand {
+  /* Pale gold on ivory is ~1.2:1 — a focus ring nobody can see. Re-point it to
+     ink for this band, then back to gold inside the dark featured card. */
+  --focus: #3b2a0c;
   position: relative;
   overflow: hidden;
   border-top: 1px solid rgba(255, 255, 255, .7);
@@ -954,13 +1146,39 @@ summary:focus-visible {
   box-shadow: 0 1rem 3rem rgba(41, 33, 24, .04);
 }
 
-.collectionCard:hover {
-  border-color: rgba(23, 20, 25, .34);
-  background: rgba(251, 247, 240, .92);
-  transform: translateY(-.12rem);
+/* :not(.collectionFeatured) matters — the featured card is dark, and an
+   unqualified hover repainted it cream while its text stayed near-white. */
+@media (hover: hover) {
+  .collectionCard:not(.collectionFeatured):hover {
+    border-color: rgba(23, 20, 25, .34);
+    background: rgba(251, 247, 240, .95);
+    box-shadow: 0 1.5rem 3.5rem rgba(41, 33, 24, .1);
+    transform: translateY(-.2rem);
+  }
+
+  .collectionFeatured:hover {
+    border-color: rgba(232, 189, 114, .4);
+    box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, .3);
+    transform: translateY(-.2rem);
+  }
+
+  .collectionShot:hover img {
+    transform: scale(1.02);
+  }
+}
+
+.collectionCard:focus-within {
+  border-color: rgba(23, 20, 25, .38);
+  box-shadow: 0 1.5rem 3.5rem rgba(41, 33, 24, .1);
+}
+
+.collectionFeatured:focus-within {
+  border-color: rgba(232, 189, 114, .45);
+  box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, .3);
 }
 
 .collectionFeatured {
+  --focus: var(--gold-hi);
   overflow: hidden;
   grid-row: 1 / span 3;
   padding: 0;
@@ -985,10 +1203,6 @@ summary:focus-visible {
   transition: transform .5s ease;
 }
 
-.collectionShot:hover img {
-  transform: scale(1.02);
-}
-
 .collectionBody {
   display: flex;
   flex: 1;
@@ -999,7 +1213,7 @@ summary:focus-visible {
 .collectionCard h3 {
   margin: .65rem 0 .55rem;
   font-size: clamp(1.8rem, 3vw, 2.45rem);
-  letter-spacing: -.025em;
+  letter-spacing: -.018em;
 }
 
 .collectionCard p {
@@ -1022,20 +1236,20 @@ summary:focus-visible {
 
 .maturity {
   align-self: flex-start;
-  padding: .3rem .52rem;
+  padding: .34rem .58rem;
   border: 1px solid currentColor;
   border-radius: 99px;
-  font-size: .6rem;
+  font-size: .65rem;
   font-weight: 800;
   letter-spacing: .08em;
   text-transform: uppercase;
 }
 
-.maturityReady { color: #24816b; }
-.maturityBuild { color: #8b5f1e; }
-.maturityEarly { color: #7452ad; }
-.maturityTrial { color: #a24761; }
-.collectionFeatured .maturityReady { color: var(--mint); }
+.maturityReady { color: #176f5c; background: rgba(36, 129, 107, .09); }
+.maturityBuild { color: #7a4d0f; background: rgba(139, 95, 30, .09); }
+.maturityEarly { color: #68439f; background: rgba(116, 82, 173, .09); }
+.maturityTrial { color: #92384f; background: rgba(162, 71, 97, .09); }
+.collectionFeatured .maturityReady { color: var(--mint); background: rgba(116, 212, 181, .08); }
 
 .openActions {
   display: flex;
@@ -1065,7 +1279,7 @@ summary:focus-visible {
   max-width: 42rem;
   margin: .65rem 0 1rem;
   font-size: clamp(3rem, 5.5vw, 5.4rem);
-  letter-spacing: -.045em;
+  letter-spacing: -.028em;
 }
 
 .serviceIntro > p:not(.eyebrow) {
@@ -1089,13 +1303,15 @@ summary:focus-visible {
 
 .methodList li > span {
   color: var(--gold);
-  font: 500 .8rem/1.5 var(--display);
+  font: 800 .78rem/1.6 var(--body);
+  letter-spacing: .06em;
 }
 
 .methodList strong {
   display: block;
-  margin-bottom: .25rem;
-  font: 500 1.35rem/1.2 var(--display);
+  margin-bottom: .3rem;
+  font: 600 1.32rem/1.25 var(--display);
+  letter-spacing: -.015em;
 }
 
 .methodList p {
@@ -1148,7 +1364,7 @@ summary:focus-visible {
   z-index: 1;
   color: var(--gold-hi);
   font: 500 clamp(4rem, 7vw, 6rem)/1 var(--display);
-  letter-spacing: -.08em;
+  letter-spacing: -.05em;
 }
 
 .founderMark small {
@@ -1173,13 +1389,16 @@ summary:focus-visible {
 .founderCopy h2 {
   margin: .55rem 0 1.2rem;
   font-size: clamp(3rem, 5vw, 5rem);
-  letter-spacing: -.045em;
+  letter-spacing: -.028em;
 }
 
+/* Paragraph-length copy stays on the body face — this was the least readable
+   block on the page when it was set in a Didone. */
 .founderLead {
-  max-width: 51rem;
+  max-width: 46rem;
   color: var(--text);
-  font: 500 clamp(1.2rem, 2vw, 1.5rem)/1.45 var(--display);
+  font: 500 clamp(1.12rem, 1.7vw, 1.32rem)/1.55 var(--body);
+  letter-spacing: -.005em;
 }
 
 .founderCopy > p:not(.eyebrow):not(.founderLead) {
@@ -1238,7 +1457,7 @@ summary:focus-visible {
   max-width: 58rem;
   margin: .6rem auto 1rem;
   font-size: clamp(3.3rem, 6.5vw, 6.5rem);
-  letter-spacing: -.055em;
+  letter-spacing: -.032em;
 }
 
 .finalCta > p:not(.eyebrow):not(.phoneNote) {
@@ -1301,7 +1520,9 @@ summary:focus-visible {
 .notFound,
 .policyPage {
   width: min(52rem, calc(100% - 2.5rem));
+  /* svh, so mobile browser chrome doesn't push these pages into a scroll. */
   min-height: 100vh;
+  min-height: 100svh;
   margin: auto;
   padding: 4rem 0;
 }
@@ -1322,7 +1543,7 @@ summary:focus-visible {
 .notFound h1,
 .policyPage h1 {
   font-size: clamp(3.5rem, 9vw, 6.8rem);
-  letter-spacing: -.05em;
+  letter-spacing: -.03em;
 }
 
 .notFound > p:not(.eyebrow) {
@@ -1374,6 +1595,21 @@ summary:focus-visible {
   display: grid;
   gap: .35rem;
   margin: .7rem 0 0 1.2rem;
+}
+
+.policyCard ::marker {
+  color: var(--gold);
+}
+
+code {
+  padding: .12em .4em;
+  border: 1px solid var(--line);
+  border-radius: .3rem;
+  background: rgba(232, 189, 114, .08);
+  color: var(--gold-hi);
+  font-family: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace;
+  font-size: .88em;
+  word-break: break-word;
 }
 
 .policyBack {
@@ -1516,7 +1752,7 @@ summary:focus-visible {
 
   .hero h1 {
     font-size: clamp(3rem, 13.5vw, 3.55rem);
-    letter-spacing: -.045em;
+    letter-spacing: -.025em;
   }
 
   .kicker,

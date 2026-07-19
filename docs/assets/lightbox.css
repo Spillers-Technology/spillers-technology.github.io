@@ -24,7 +24,7 @@
 }
 
 .lightbox-trigger:focus-visible {
-  outline: 3px solid #ffe2a9;
+  outline: 3px solid var(--focus, #ffe2a9);
   outline-offset: 4px;
 }
 
@@ -120,7 +120,7 @@
 }
 
 .image-lightbox__image:focus-visible {
-  outline: 3px solid #ffe2a9;
+  outline: 3px solid var(--focus, #ffe2a9);
   outline-offset: 4px;
 }
 
