@@ -5,11 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#09090b">
   <title>Spillers Technology — Operational Software, Tailored to the Work</title>
-  <meta name="description" content="Founder-led software for service desks, voice workflows, network discovery, and the operational work between them.">
+  <meta name="description" content="Founder-led, MIT-licensed software for MSPs and internal IT teams: a service desk that knows the devices, voicemail that becomes work, cross-tenant Microsoft operations, and the utilities between them.">
   <link rel="canonical" href="https://spillerstech.us/">
 
   <meta property="og:title" content="Spillers Technology — Operational Software, Tailored to the Work">
-  <meta property="og:description" content="Focused, self-hostable tools for MSPs and internal IT teams—built from real operational friction.">
+  <meta property="og:description" content="Focused, self-hostable, MIT-licensed tools for MSPs and internal IT teams—built from real operational friction.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://spillerstech.us/">
   <meta property="og:image" content="https://spillerstech.us/assets/spillerstech-og.png">
@@ -30,17 +30,32 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "Spillers Technology",
-    "url": "https://spillerstech.us/",
-    "description": "An independent software studio building operational tools for MSPs and internal IT teams.",
-    "founder": {
-      "@type": "Person",
-      "name": "Joseph Spillers"
-    },
-    "sameAs": [
-      "https://github.com/Spillers-Technology",
-      "https://www.linkedin.com/in/joseph-spillers-ba6a491b5/"
+    "@graph": [
+      {
+        "@type": "Organization",
+        "name": "Spillers Technology",
+        "url": "https://spillerstech.us/",
+        "description": "An independent software studio building operational tools for MSPs and internal IT teams.",
+        "founder": {
+          "@type": "Person",
+          "name": "Joseph Spillers"
+        },
+        "sameAs": [
+          "https://github.com/Spillers-Technology",
+          "https://www.linkedin.com/in/joseph-spillers-ba6a491b5/"
+        ]
+      },
+      {
+        "@type": "ItemList",
+        "name": "Spillers Technology products",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "item": { "@type": "SoftwareApplication", "name": "AnchorDesk", "applicationCategory": "BusinessApplication", "operatingSystem": "Docker, Kubernetes", "license": "https://opensource.org/licenses/MIT", "url": "https://spillerstech.us/AnchorDesk/" } },
+          { "@type": "ListItem", "position": 2, "item": { "@type": "SoftwareApplication", "name": "ComFlow", "applicationCategory": "BusinessApplication", "operatingSystem": "Docker", "license": "https://opensource.org/licenses/MIT", "url": "https://spillerstech.us/ComFlow/" } },
+          { "@type": "ListItem", "position": 3, "item": { "@type": "SoftwareApplication", "name": "Partner Center Bridge", "applicationCategory": "BusinessApplication", "operatingSystem": "Docker", "license": "https://opensource.org/licenses/MIT", "url": "https://spillerstech.us/PartnerCenterBridge/" } },
+          { "@type": "ListItem", "position": 4, "item": { "@type": "SoftwareApplication", "name": "NetViz", "applicationCategory": "NetworkingApplication", "operatingSystem": "Windows, Linux", "license": "https://opensource.org/licenses/MIT", "url": "https://spillerstech.us/netviz/" } },
+          { "@type": "ListItem", "position": 5, "item": { "@type": "SoftwareApplication", "name": "SpoolSmith", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Windows", "license": "https://opensource.org/licenses/MIT", "url": "https://spilloid.github.io/spoolsmith/" } }
+        ]
+      }
     ]
   }
   </script>
@@ -81,7 +96,7 @@
 
     <nav class="topnav" aria-label="Main navigation">
       <a href="#products">Products</a>
-      <a href="#collection">Collection</a>
+      <a href="#collection">Workshop</a>
       <a href="#services">Custom work</a>
       <a href="#about">About</a>
     </nav>
@@ -92,7 +107,7 @@
       <summary aria-label="Open navigation"><span></span><span></span></summary>
       <nav aria-label="Mobile navigation">
         <a href="#products">Products</a>
-        <a href="#collection">Collection</a>
+        <a href="#collection">Workshop</a>
         <a href="#services">Custom work</a>
         <a href="#about">About</a>
         <a href="mailto:help@spillerstech.us?subject=Let%27s%20build%20something">Start a conversation ↗</a>
@@ -110,15 +125,15 @@
       <div class="heroCopy">
         <p class="kicker"><span class="liveDot" aria-hidden="true"></span> Independent software studio · Indianapolis</p>
         <h1 id="hero-title">Operational software, <em>tailored to the work.</em></h1>
-        <p class="heroLead">Spillers Technology builds focused tools for MSPs and internal IT teams: a service desk that knows the devices, voicemail that becomes actionable work, and utilities for the gaps between them — most exposing an MCP server so your own AI agents can work the same data.</p>
+        <p class="heroLead">Focused, self-hostable tools for MSPs and internal IT teams: a service desk that knows the devices, voicemail that arrives as work, cross-tenant Microsoft operations, and the utilities in between. Three of them ship an MCP server, so your own AI agents can work the same data — inside the guardrails you set.</p>
         <div class="ctaRow">
           <a class="btn btnPrimary" href="#products">Explore the products <span aria-hidden="true">↓</span></a>
           <a class="btn btnGhost" href="https://github.com/Spillers-Technology" target="_blank" rel="noopener">View public source <span aria-hidden="true">↗</span></a>
         </div>
         <ul class="heroNotes" aria-label="Studio principles">
-          <li>Self-hostable products</li>
-          <li>Visible release history</li>
-          <li>Direct human support</li>
+          <li>MIT-licensed products</li>
+          <li>Self-hostable</li>
+          <li>Signed Windows builds</li>
           <li>MCP servers for AI agents</li>
         </ul>
       </div>
@@ -140,27 +155,32 @@
             <span><strong>ComFlow</strong><small>Voice → structured work</small></span>
             <b>Latest ↗</b>
           </a>
+          <a href="https://github.com/Spillers-Technology/PartnerCenterBridge/releases/latest" target="_blank" rel="noopener">
+            <span class="productGlyph glyphSky" aria-hidden="true">P</span>
+            <span><strong>Partner Center Bridge</strong><small>Cross-tenant Microsoft ops</small></span>
+            <b>Pre-1.0 ↗</b>
+          </a>
           <a href="https://github.com/Spillers-Technology/netviz/releases/latest" target="_blank" rel="noopener">
             <span class="productGlyph glyphMint" aria-hidden="true">N</span>
-            <span><strong>NetViz</strong><small>Desktop LAN discovery</small></span>
-            <b>Desktop ↗</b>
+            <span><strong>NetViz</strong><small>LAN discovery · Windows + Linux</small></span>
+            <b>Download ↗</b>
           </a>
-          <a href="https://github.com/Spillers-Technology/RetroSpool/releases/latest" target="_blank" rel="noopener">
-            <span class="productGlyph glyphRose" aria-hidden="true">R</span>
-            <span><strong>RetroSpool</strong><small>IBM i print data → PDF</small></span>
-            <b>Pre-1.0 ↗</b>
+          <a href="https://github.com/spilloid/spoolsmith/releases/latest" target="_blank" rel="noopener">
+            <span class="productGlyph glyphRose" aria-hidden="true">S</span>
+            <span><strong>SpoolSmith</strong><small>Printer setup, PC to PC</small></span>
+            <b>Download ↗</b>
           </a>
         </div>
         <div class="consoleFoot">
           <span>Public repos · tagged releases</span>
-          <a href="#collection">View the full collection →</a>
+          <a href="#collection">See the whole workshop →</a>
         </div>
       </aside>
 
       <ul class="studioRail" aria-label="What shapes the studio">
         <li><span>01</span><strong>Operator-built</strong><small>Designed from the queue outward</small></li>
         <li><span>02</span><strong>Self-host friendly</strong><small>Your infrastructure stays yours</small></li>
-        <li><span>03</span><strong>Source in the open</strong><small>Inspect the machinery</small></li>
+        <li><span>03</span><strong>Open source, MIT</strong><small>Inspect, fork, and run the machinery</small></li>
         <li><span>04</span><strong>Human supported</strong><small>Talk to the person who built it</small></li>
       </ul>
     </section>
@@ -171,7 +191,7 @@
           <p class="eyebrow">The headliners</p>
           <h2 id="products-title">Built from real operational friction.</h2>
         </div>
-        <p>Use the products yourself, inspect how they work, wire them into your AI agents over MCP, or talk to Joey about a supported deployment.</p>
+        <p>Run them yourself, read every line, wire them into your AI agents over MCP, or talk to Joey about a supported deployment.</p>
       </div>
 
       <div class="showcaseGrid">
@@ -183,13 +203,14 @@
             <div class="productMeta"><span>MIT licensed · Self-hosted</span><span>Deployment support</span></div>
             <h3>AnchorDesk</h3>
             <p class="productPitch">Your service desk, anchored to your data.</p>
-            <p>Local-first ticketing for MSPs and IT teams, with email, SLA automation, device context, RMM actions, append-only audit records, and authenticated agent workflows.</p>
+            <p>Local-first ticketing for MSPs and IT teams, with email-to-ticket, SLA automation, device context, RMM actions, a customer portal, append-only audit records, and authenticated agent workflows.</p>
             <ul class="compactPoints">
               <li>PostgreSQL stays the source of truth</li>
               <li>Mobile-first ticket and device workflows</li>
               <li>Docker, Kubernetes, and GHCR releases</li>
-              <li>MCP server for AI agents — tickets, KB, reports, time, checklists</li>
+              <li>MCP server for AI agents — tickets, checklists, notes, time, and search</li>
             </ul>
+            <p class="honestNote"><strong>Integrations, labeled honestly:</strong> IMAP/SMTP, netviz probes, and Tactical RMM are available; Jira sync is beta; ConnectWise, NinjaOne, and Datto are alpha.</p>
             <div class="productActions">
               <a class="btn btnPrimary" href="https://spillerstech.us/AnchorDesk/">Explore AnchorDesk →</a>
               <a class="textLink" href="https://github.com/Spillers-Technology/AnchorDesk" target="_blank" rel="noopener">Source &amp; quickstart ↗</a>
@@ -202,24 +223,48 @@
             <img src="assets/comflow-inbox.jpg" alt="ComFlow inbox showing structured voicemail summaries, urgency, assignment, and review state" width="1440" height="960">
           </a>
           <div class="showcaseBody">
-            <div class="productMeta"><span>Source available · Self-hosted</span><span>Hosted access</span></div>
+            <div class="productMeta"><span>MIT licensed · Self-hosted or hosted</span><span>Hosted access</span></div>
             <h3>ComFlow</h3>
             <p class="productPitch">Voicemail that arrives ready to act on.</p>
-            <p>Receive calls over SIP, transcribe and structure each message, review everything in one inbox, and turn the right calls into AnchorDesk tickets.</p>
+            <p>A voicemail regulator — deliberately not an AI receptionist. It answers over SIP, transcribes and structures each message, puts everything in one review inbox, and turns the right calls into AnchorDesk tickets.</p>
             <ul class="compactPoints">
               <li>Bring your own SIP trunk</li>
               <li>Pluggable speech and language providers</li>
               <li>Single-team and multi-tenant modes</li>
-              <li>Hosted MCP endpoint, RBAC-scoped API keys</li>
+              <li>MCP endpoint with RBAC-scoped API keys</li>
             </ul>
+            <p class="honestNote"><strong>Try it before you wire it:</strong> stub telephony and AI providers are the default, so you can work the inbox end to end before pointing a SIP trunk or an API key at it.</p>
             <div class="productActions">
-              <a class="btn btnPrimary" href="https://com.spillerstech.us/register">Request hosted access →</a>
+              <a class="btn btnPrimary" href="mailto:help@spillerstech.us?subject=ComFlow%20hosted%20access">Request hosted access →</a>
               <a class="textLink" href="https://spillerstech.us/ComFlow/">Product tour →</a>
               <a class="textLink" href="https://github.com/Spillers-Technology/ComFlow" target="_blank" rel="noopener">Source &amp; self-host ↗</a>
             </div>
           </div>
         </article>
       </div>
+
+      <article class="showcaseCard showcaseWide showcaseSky">
+        <a class="productShot lightbox-trigger" href="assets/pcbridge-dashboard.jpg" data-lightbox>
+          <img src="assets/pcbridge-dashboard.jpg" alt="Partner Center Bridge dashboard listing tenants, deployments, items needing attention, and recent workflow runs with operator and result" width="1440" height="960" loading="lazy" decoding="async">
+        </a>
+        <div class="showcaseBody">
+          <div class="productMeta"><span>MIT licensed · Pre-1.0 · Self-hosted</span><span>Deployment support</span></div>
+          <h3>Partner Center Bridge</h3>
+          <p class="productPitch">Every customer tenant, one reconcile loop.</p>
+          <p>An ASP.NET Core API and React console in front of Microsoft Graph and the Partner Center API. A contract declares the desired state — starting with Win32 app templates — and the bridge reconciles every tenant on it, replacing repeat portal archaeology with reviewable, audited runs.</p>
+          <ul class="compactPoints">
+            <li><b>Stable:</b> templated Win32 deploys, new-hire and offboarding provisioning, cross-tenant Find User</li>
+            <li><b>Beta:</b> Diagnose → Fix → Verify workflows, mailbox repair, config snapshots, and an MCP server behind a human approval queue</li>
+            <li>Passkeys and TOTP for local accounts, or bring any OIDC provider</li>
+            <li>Two-way LDAP sync is planned — not built yet</li>
+          </ul>
+          <div class="productActions">
+            <a class="btn btnPrimary" href="https://spillerstech.us/PartnerCenterBridge/">Explore Partner Center Bridge →</a>
+            <a class="textLink" href="https://github.com/Spillers-Technology/PartnerCenterBridge/releases/latest" target="_blank" rel="noopener">Latest release ↗</a>
+            <a class="textLink" href="https://github.com/Spillers-Technology/PartnerCenterBridge" target="_blank" rel="noopener">Source ↗</a>
+          </div>
+        </div>
+      </article>
     </section>
 
     <section id="collection" class="lightBand" aria-labelledby="collection-title">
@@ -238,12 +283,20 @@
               <img src="assets/netviz-graph.png" alt="NetViz graph view grouping discovered devices on a local network" width="2160" height="1440" loading="lazy" decoding="async">
             </a>
             <div class="collectionBody">
-              <span class="maturity maturityReady">Desktop release</span>
+              <span class="maturity maturityReady">1.0 · Signed Windows build</span>
               <h3>NetViz</h3>
-              <p>A desktop LAN scanner and network visualizer with tagged binaries and public source. Check the current release assets for available platforms.</p>
+              <p>A free, open-source LAN scanner and network visualizer on a native Go scan engine. Devices stream in live as a table, a grouped graph, and a clickable hierarchy map. No agents, no accounts, no Nmap.</p>
+              <ul class="compactPoints">
+                <li>TCP-connect discovery of common LAN ports — no raw packets, drivers, or special privileges</li>
+                <li>Monitor mode re-scans on your interval and flags new, offline, and changed devices</li>
+                <li>Bundles <code>netviz-cli</code> and a headless <code>netviz-probe</code> that can feed AnchorDesk device inventory</li>
+                <li>Scan history stays in a local SQLite database; scan only networks you are authorized to scan</li>
+                <li>Windows and Linux archives carry SHA-256 checksums; the Windows binaries are Authenticode-signed</li>
+                <li>No prebuilt macOS download yet — on macOS it builds from source</li>
+              </ul>
               <div class="openActions">
                 <a href="https://spillerstech.us/netviz/">Explore →</a>
-                <a href="https://github.com/Spillers-Technology/netviz/releases/latest" target="_blank" rel="noopener">Releases ↗</a>
+                <a href="https://github.com/Spillers-Technology/netviz/releases/latest" target="_blank" rel="noopener">Download ↗</a>
                 <a href="https://github.com/Spillers-Technology/netviz" target="_blank" rel="noopener">Source ↗</a>
               </div>
             </div>
@@ -251,9 +304,24 @@
 
           <article class="collectionCard">
             <span class="collectionNumber" aria-hidden="true">01</span>
+            <span class="maturity maturityReady">1.0 · Windows</span>
+            <h3>SpoolSmith</h3>
+            <p>Copy a working network-printer setup from one PC to another. Review a dry-run plan, apply it against a plan fingerprint, and it fails closed if the address now answers as a different device.</p>
+            <pre class="cmdSnippet" aria-label="Example SpoolSmith commands"><code><span class="cmdPrompt">PS&gt;</span> spoolsmith copy "Accounting" acct.ssb
+<span class="cmdPrompt">PS&gt;</span> spoolsmith apply acct.ssb --dry-run</code></pre>
+            <p>Native Windows app and CLI, Authenticode-signed. <code>--include-driver</code> carries the driver package out of the driver store, and it exports a local Intune Win32 package.</p>
+            <div class="openActions">
+              <a href="https://spilloid.github.io/spoolsmith/" target="_blank" rel="noopener">Explore →</a>
+              <a href="https://github.com/spilloid/spoolsmith/releases/latest" target="_blank" rel="noopener">Download ↗</a>
+              <a href="https://github.com/spilloid/spoolsmith" target="_blank" rel="noopener">Source ↗</a>
+            </div>
+          </article>
+
+          <article class="collectionCard">
+            <span class="collectionNumber" aria-hidden="true">02</span>
             <span class="maturity maturityBuild">Pre-1.0</span>
             <h3>RetroSpool</h3>
-            <p>A working IBM i print-data capture and PDF pipeline with an operator console. Live queue polling and export automation remain in development.</p>
+            <p>Your AS/400 reports, as PDFs. The capture pipeline works today — it splits IBM i PCL spool output and renders clean PDFs — behind a multi-tenant operator console with self-serve connection intake. The queue poller and the S3/SFTP export fan-out are planned, not built.</p>
             <div class="openActions">
               <a href="https://spillerstech.us/RetroSpool/">Explore →</a>
               <a href="https://github.com/Spillers-Technology/RetroSpool" target="_blank" rel="noopener">Source ↗</a>
@@ -261,24 +329,39 @@
           </article>
 
           <article class="collectionCard">
-            <span class="collectionNumber" aria-hidden="true">02</span>
-            <span class="maturity maturityEarly">Early release</span>
-            <h3>Partner Center Bridge</h3>
-            <p>Repeat cross-tenant Microsoft Graph and Partner Center operations without the portal archaeology — with an MCP server AI agents can use to diagnose and remediate workflows under human-approved guardrails.</p>
-            <div class="openActions">
-              <a href="https://spillerstech.us/PartnerCenterBridge/">Explore →</a>
-              <a href="https://github.com/Spillers-Technology/PartnerCenterBridge" target="_blank" rel="noopener">Source ↗</a>
-            </div>
-          </article>
-
-          <article class="collectionCard">
             <span class="collectionNumber" aria-hidden="true">03</span>
             <span class="maturity maturityTrial">Public trial</span>
             <h3>OpsQuest</h3>
-            <p>Practice the technical and human sides of support in a playable ticket queue with coaching and debriefs.</p>
+            <p>Practice the technical and human sides of support: 20 branching tickets, separate Tech and People scoring, skill drills, and debriefs. Works offline; the Android app is on GitHub Releases.</p>
             <div class="openActions">
+              <a href="https://spillerstech.us/OpsQuest/">Explore →</a>
               <a href="https://github.com/Spillers-Technology/OpsQuest/releases/latest" target="_blank" rel="noopener">Get the app ↗</a>
               <a href="https://github.com/Spillers-Technology/OpsQuest" target="_blank" rel="noopener">Source ↗</a>
+            </div>
+          </article>
+        </div>
+
+        <div class="labStrip" aria-labelledby="lab-title">
+          <div class="labHead">
+            <p class="eyebrow">Off the clock</p>
+            <h3 id="lab-title">Experiments &amp; playthings</h3>
+          </div>
+          <article class="labCard">
+            <span class="maturity maturityBuild">Pre-1.0 · Replay MVP</span>
+            <h4>Corporate-Simulator</h4>
+            <p>A tiny animated office that replays board-style adversarial review: a motion, isolated positions, debate, a vote, minutes, and the founder’s decision. The studio runs this process by hand for real decisions; this is the public engine. Live model seats are planned.</p>
+            <div class="openActions">
+              <a href="https://spillerstech.us/Corporate-Simulator/">Explore →</a>
+              <a href="https://github.com/Spillers-Technology/Corporate-Simulator" target="_blank" rel="noopener">Source ↗</a>
+            </div>
+          </article>
+          <article class="labCard">
+            <span class="maturity maturityReady">Playable · BSD-2-Clause</span>
+            <h4>SpillerMug</h4>
+            <p>A coffee-powered momentum runner: a procedural 3D punk mug in charm-covered clogs. Run automatically, earn flow with timed tricks, and grind rails to keep your speed. No build step; it plays in the browser.</p>
+            <div class="openActions">
+              <a href="https://spillerstech.us/SpillerMug/">Play →</a>
+              <a href="https://github.com/Spillers-Technology/SpillerMug" target="_blank" rel="noopener">Source ↗</a>
             </div>
           </article>
         </div>
@@ -290,12 +373,21 @@
         <p class="eyebrow">Custom software</p>
         <h2 id="services-title">Have a workflow held together by memory?</h2>
         <p>I build internal tools, integrations, dashboards, document pipelines, and provisioning workflows around the way your team actually operates.</p>
+        <ul class="capabilityTags" aria-label="Areas of work">
+          <li>Microsoft Graph &amp; Intune automation</li>
+          <li>Service desk &amp; RMM integration</li>
+          <li>MCP servers &amp; agent guardrails</li>
+          <li>Printer &amp; driver deployment</li>
+          <li>Document &amp; PDF pipelines</li>
+          <li>Network &amp; device inventory</li>
+        </ul>
         <a class="btn btnPrimary" href="mailto:help@spillerstech.us?subject=I%20have%20a%20workflow%20that%20needs%20work">Tell Joey what’s stuck ↗</a>
       </div>
       <ol class="methodList">
         <li><span>01</span><div><strong>Find the drag</strong><p>Start with the brittle handoff, recurring check, or queue that quietly steals the day.</p></div></li>
         <li><span>02</span><div><strong>Make it legible</strong><p>Turn invisible state into a system people can understand, inspect, and recover.</p></div></li>
         <li><span>03</span><div><strong>Ship the useful part</strong><p>Deliver the smallest honest tool, then improve it from real operator feedback.</p></div></li>
+        <li><span>04</span><div><strong>Leave it runnable</strong><p>Documented, versioned, and yours: source you can read and a release process you can repeat.</p></div></li>
       </ol>
     </section>
 
@@ -334,6 +426,7 @@
   <footer class="footer">
     <a class="wordmark" href="#top"><span class="mark" aria-hidden="true">ST</span><span class="wordmarkText">Spillers <strong>Technology</strong></span></a>
     <nav class="footerLinks" aria-label="Footer navigation">
+      <a href="#products">Products</a>
       <a href="https://github.com/Spillers-Technology" target="_blank" rel="noopener">GitHub</a>
       <a href="mailto:help@spillerstech.us">Contact</a>
       <a href="privacy.html">Privacy</a>

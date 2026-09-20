@@ -14,6 +14,7 @@
   --gold-low: rgba(232, 189, 114, .13);
   --violet: #ad90ff;
   --rose: #ef98b1;
+  --sky: #7fb8ff;
   --mint: #74d4b5;
   --ivory: #f0ebe3;
   --ivory-hi: #fbf7f0;
@@ -128,6 +129,7 @@ a,
 .mark,
 .showcaseCard,
 .collectionCard,
+.labCard,
 .studioRail li,
 .releaseConsole,
 .mobileMenu summary {
@@ -230,6 +232,7 @@ summary:focus-visible,
 .wordmark {
   display: inline-flex;
   align-items: center;
+  min-height: 2.75rem;
   gap: .8rem;
   color: var(--text);
 }
@@ -295,6 +298,11 @@ summary:focus-visible,
 
 .topnav a {
   position: relative;
+  display: inline-flex;
+  align-items: center;
+  /* WCAG 2.5.8 wants 24px of target, not 20. Vertical padding only, so the
+     nav still reads as one tight row. */
+  min-height: 1.6rem;
   color: var(--muted);
   font-size: .72rem;
   font-weight: 800;
@@ -306,7 +314,7 @@ summary:focus-visible,
   content: '';
   position: absolute;
   right: 0;
-  bottom: -.55rem;
+  bottom: -.25rem;
   left: 0;
   height: 1px;
   background: linear-gradient(90deg, transparent, var(--gold), transparent);
@@ -810,6 +818,7 @@ summary:focus-visible,
 .glyphViolet { color: var(--violet); background: rgba(173, 144, 255, .1); }
 .glyphMint { color: var(--mint); background: rgba(116, 212, 181, .09); }
 .glyphRose { color: var(--rose); background: rgba(239, 152, 177, .09); }
+.glyphSky { color: var(--sky); background: rgba(127, 184, 255, .09); }
 
 .consoleFoot {
   border-top: 1px solid var(--line);
@@ -817,6 +826,9 @@ summary:focus-visible,
 }
 
 .consoleFoot a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 1.6rem;
   color: var(--gold);
   white-space: nowrap;
 }
@@ -867,7 +879,7 @@ summary:focus-visible,
   position: absolute;
   top: .85rem;
   right: 1rem;
-  color: rgba(232, 189, 114, .36);
+  color: rgba(232, 189, 114, .6);
   font: 500 1.4rem/1 var(--display);
 }
 
@@ -1058,9 +1070,16 @@ summary:focus-visible,
   list-style: none;
 }
 
+.compactPoints li {
+  position: relative;
+  padding-left: 1.15rem;
+}
+
 .compactPoints li::before {
   content: '✦';
-  margin-right: .55rem;
+  position: absolute;
+  top: .32em;
+  left: 0;
   color: var(--card-accent);
   font-size: .6rem;
 }
@@ -1089,7 +1108,7 @@ summary:focus-visible,
 
 .lightBand {
   /* Pale gold on ivory is ~1.2:1 — a focus ring nobody can see. Re-point it to
-     ink for this band, then back to gold inside the dark featured card. */
+     ink for the whole band. */
   --focus: #3b2a0c;
   position: relative;
   overflow: hidden;
@@ -1146,19 +1165,11 @@ summary:focus-visible,
   box-shadow: 0 1rem 3rem rgba(41, 33, 24, .04);
 }
 
-/* :not(.collectionFeatured) matters — the featured card is dark, and an
-   unqualified hover repainted it cream while its text stayed near-white. */
 @media (hover: hover) {
-  .collectionCard:not(.collectionFeatured):hover {
+  .collectionCard:hover {
     border-color: rgba(23, 20, 25, .34);
     background: rgba(251, 247, 240, .95);
     box-shadow: 0 1.5rem 3.5rem rgba(41, 33, 24, .1);
-    transform: translateY(-.2rem);
-  }
-
-  .collectionFeatured:hover {
-    border-color: rgba(232, 189, 114, .4);
-    box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, .3);
     transform: translateY(-.2rem);
   }
 
@@ -1172,26 +1183,22 @@ summary:focus-visible,
   box-shadow: 0 1.5rem 3.5rem rgba(41, 33, 24, .1);
 }
 
-.collectionFeatured:focus-within {
-  border-color: rgba(232, 189, 114, .45);
-  box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, .3);
-}
-
+/* The featured card earns its emphasis from scale and the screenshot, not from
+   inverting: a black slab used to cut the ivory workshop band in half. */
 .collectionFeatured {
-  --focus: var(--gold-hi);
   overflow: hidden;
   grid-row: 1 / span 3;
   padding: 0;
-  background: var(--ink);
-  color: var(--text);
+  background: rgba(253, 250, 245, .9);
+  box-shadow: 0 1.4rem 3.4rem rgba(41, 33, 24, .07);
 }
 
 .collectionShot {
   display: block;
   overflow: hidden;
   aspect-ratio: 3 / 2;
-  border-bottom: 1px solid rgba(255, 255, 255, .15);
-  background: var(--bg-deep);
+  border-bottom: 1px solid rgba(23, 20, 25, .14);
+  background: var(--ivory);
 }
 
 .collectionShot img {
@@ -1221,17 +1228,58 @@ summary:focus-visible,
   font-size: .86rem;
 }
 
+.collectionCard p + p,
+.collectionCard p + pre,
+.collectionCard pre + p {
+  margin-top: .75rem;
+}
+
+/* The featured card is as tall as the three stacked cards beside it. Give the
+   slack to the screenshot rather than leaving it as blank card under the text.
+   `contain` over the screenshot's own chrome colour, so growing the frame never
+   slices the graph — the bands read as more of the app's canvas. */
+.collectionFeatured .collectionShot {
+  aspect-ratio: auto;
+  flex: 1 1 auto;
+  min-height: 22rem;
+  background: #f0f2f5;
+}
+
+.collectionFeatured .collectionShot img {
+  object-fit: contain;
+  object-position: center;
+}
+
+.collectionFeatured .collectionBody {
+  flex: 0 0 auto;
+}
+
 .collectionFeatured p {
-  color: var(--muted);
   font-size: .92rem;
+}
+
+.collectionFeatured .compactPoints {
+  --card-accent: #a8781f;
+  margin: 1.3rem 0 .4rem;
+  color: var(--ink-muted);
+  font-size: .84rem;
+}
+
+/* Inline code inherits a gold-on-black treatment from the dark sections; the
+   ivory band needs its own or it renders near-invisible. */
+.lightBand code {
+  border-color: rgba(23, 20, 25, .16);
+  background: rgba(139, 95, 30, .08);
+  color: #6e4815;
+  font-size: .82em;
 }
 
 .collectionNumber {
   position: absolute;
   top: 1rem;
   right: 1.2rem;
-  color: rgba(23, 20, 25, .16);
-  font: 500 2rem/1 var(--display);
+  color: rgba(23, 20, 25, .5);
+  font: 500 1.75rem/1 var(--display);
 }
 
 .maturity {
@@ -1249,23 +1297,28 @@ summary:focus-visible,
 .maturityBuild { color: #7a4d0f; background: rgba(139, 95, 30, .09); }
 .maturityEarly { color: #68439f; background: rgba(116, 82, 173, .09); }
 .maturityTrial { color: #92384f; background: rgba(162, 71, 97, .09); }
-.collectionFeatured .maturityReady { color: var(--mint); background: rgba(116, 212, 181, .08); }
 
 .openActions {
   display: flex;
-  gap: 1rem;
+  flex-wrap: wrap;
+  gap: .25rem 1.1rem;
   margin-top: auto;
-  padding-top: 1rem;
+  padding-top: .75rem;
+}
+
+/* 44px touch targets without 44px of visual weight: the padding is vertical
+   only, so the row still reads as a tight line of links. */
+.openActions a,
+.textLink {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.25rem;
 }
 
 .openActions a {
   color: #6e4815;
   font-size: .75rem;
   font-weight: 800;
-}
-
-.collectionFeatured .openActions a {
-  color: var(--gold);
 }
 
 .servicesSection {
@@ -1415,6 +1468,9 @@ summary:focus-visible,
 }
 
 .founderLinks a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.25rem;
   font-size: .76rem;
   font-weight: 800;
 }
@@ -1619,6 +1675,182 @@ code {
   font-weight: 800;
 }
 
+/* ── Third headliner: wide showcase ─────────────────────── */
+.showcaseSky {
+  --card-accent: var(--sky);
+}
+
+.showcaseSky .btnPrimary {
+  border-color: var(--sky);
+  background: linear-gradient(115deg, #cfe4ff, var(--sky));
+}
+
+.showcaseSky .btnPrimary:hover {
+  background: #cfe4ff;
+}
+
+.showcaseWide {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+  margin-top: 1.4rem;
+}
+
+.showcaseWide .productShot {
+  aspect-ratio: auto;
+  min-height: 100%;
+  border-right: 1px solid var(--line);
+  border-bottom: 0;
+  /* Matches the screenshot's own canvas, so the letterbox above and below the
+     dashboard reads as more of the app rather than as empty card. */
+  background: #101828;
+}
+
+/* The body column is taller than 3:2, so `cover` was slicing ~20% off the right
+   edge of the dashboard — mid-word through the tab bar. Show all of it. */
+.showcaseWide .productShot img {
+  position: absolute;
+  inset: 0;
+  object-fit: contain;
+  object-position: center;
+}
+
+.showcaseWide .productShot::after {
+  background: linear-gradient(180deg, transparent 72%, rgba(9, 9, 11, .3));
+}
+
+.showcaseWide .showcaseBody h3 {
+  font-size: clamp(2.1rem, 3.4vw, 2.9rem);
+}
+
+.compactPoints b {
+  color: var(--text);
+  font-weight: 800;
+}
+
+/* Integration-maturity disclosure: honesty as a design element. */
+.showcaseBody > p.honestNote {
+  margin: -.4rem 0 1.5rem;
+  padding: .7rem .9rem;
+  border-left: 2px solid var(--gold);
+  border-radius: 0 .35rem .35rem 0;
+  background: var(--gold-low);
+  color: var(--muted);
+  font-size: .76rem;
+  line-height: 1.55;
+}
+
+.honestNote strong {
+  color: var(--gold-hi);
+}
+
+/* ── SpoolSmith command snippet ─────────────────────────── */
+.cmdSnippet {
+  overflow-x: auto;
+  margin: .9rem 0;
+  padding: .85rem 1rem;
+  border: 1px solid rgba(255, 255, 255, .1);
+  border-radius: .45rem;
+  background: var(--ink);
+  color: var(--ivory);
+  font: 500 .72rem/1.7 ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.cmdSnippet code {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  word-break: normal;
+}
+
+.cmdPrompt {
+  margin-right: .55rem;
+  color: var(--gold);
+  user-select: none;
+}
+
+/* ── Lab strip (light band) ─────────────────────────────── */
+.labStrip {
+  display: grid;
+  grid-template-columns: minmax(11rem, .55fr) minmax(0, 1fr) minmax(0, 1fr);
+  align-items: stretch;
+  gap: 1rem;
+  margin-top: clamp(3rem, 6vw, 4.5rem);
+  padding-top: clamp(2rem, 4vw, 3rem);
+  border-top: 1px solid rgba(23, 20, 25, .16);
+}
+
+.labHead {
+  align-self: center;
+}
+
+.labHead h3 {
+  margin-top: .5rem;
+  font-size: clamp(1.7rem, 2.6vw, 2.2rem);
+  letter-spacing: -.018em;
+}
+
+.labCard {
+  display: flex;
+  flex-direction: column;
+  padding: 1.35rem;
+  border: 1px solid rgba(23, 20, 25, .17);
+  border-radius: .65rem;
+  background: rgba(251, 247, 240, .68);
+}
+
+.labCard h4 {
+  margin: .6rem 0 .5rem;
+  font-size: 1.55rem;
+  letter-spacing: -.015em;
+}
+
+.labCard p {
+  color: var(--ink-muted);
+  font-size: .84rem;
+}
+
+@media (hover: hover) {
+  .labCard:hover {
+    border-color: rgba(23, 20, 25, .34);
+    background: rgba(251, 247, 240, .95);
+    box-shadow: 0 1.5rem 3.5rem rgba(41, 33, 24, .1);
+    transform: translateY(-.2rem);
+  }
+}
+
+.labCard:focus-within {
+  border-color: rgba(23, 20, 25, .38);
+  box-shadow: 0 1.5rem 3.5rem rgba(41, 33, 24, .1);
+}
+
+/* ── Capability tags (custom work) ──────────────────────── */
+.capabilityTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  max-width: 42rem;
+  margin: 0 0 1.8rem;
+  list-style: none;
+}
+
+.capabilityTags li {
+  padding: .32rem .7rem;
+  border: 1px solid var(--line-strong);
+  border-radius: 99px;
+  color: var(--muted);
+  font-size: .72rem;
+  font-weight: 700;
+}
+
+.capabilityTags li:hover {
+  border-color: var(--gold);
+  color: var(--gold-hi);
+}
+
 @media (max-width: 1120px) {
   .hero {
     grid-template-columns: minmax(0, 1fr) minmax(22rem, .82fr);
@@ -1648,7 +1880,38 @@ code {
   }
 }
 
+@media (max-width: 1040px) {
+  /* Below this the image column gets so narrow (and so tall) that the
+     dashboard shrinks into a stripe. Stack it before that happens. */
+  .showcaseWide {
+    grid-template-columns: 1fr;
+  }
+
+  .showcaseWide .productShot {
+    aspect-ratio: 3 / 2;
+    min-height: 0;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  /* Two right-aligned caps labels shred into four wrapped lines in a narrow
+     card; left-align them and let them flow. */
+  .productMeta {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: .2rem 1.2rem;
+  }
+}
+
 @media (max-width: 960px) {
+  .labStrip {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .labHead {
+    grid-column: 1 / -1;
+  }
+
   .topnav,
   .topCta {
     display: none;
@@ -1718,8 +1981,17 @@ code {
 
 @media (max-width: 780px) {
   .showcaseGrid,
-  .collectionGrid {
+  .collectionGrid,
+  .showcaseWide,
+  .labStrip {
     grid-template-columns: 1fr;
+  }
+
+  .showcaseWide .productShot {
+    aspect-ratio: 3 / 2;
+    min-height: 0;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
   }
 
   .collectionFeatured {
@@ -1727,8 +1999,10 @@ code {
   }
 
   .productShot,
-  .collectionShot {
+  .collectionShot,
+  .collectionFeatured .collectionShot {
     aspect-ratio: 16 / 10;
+    min-height: 0;
   }
 }
 
@@ -1828,6 +2102,23 @@ code {
 
   .footerFine {
     grid-column: auto;
+  }
+}
+
+/* ── Touch: the link rows are the primary affordance on a phone ─────────── */
+@media (pointer: coarse), (max-width: 620px) {
+  .openActions,
+  .productActions,
+  .founderLinks {
+    gap: .15rem 1.1rem;
+  }
+
+  .openActions a,
+  .textLink,
+  .founderLinks a,
+  .consoleFoot a,
+  .releaseList a {
+    min-height: 2.75rem;
   }
 }
 
