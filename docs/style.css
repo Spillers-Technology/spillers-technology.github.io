@@ -1150,7 +1150,7 @@ summary:focus-visible,
 .collectionGrid {
   display: grid;
   grid-template-columns: minmax(0, 1.28fr) minmax(19rem, .72fr);
-  grid-template-rows: repeat(3, auto);
+  grid-template-rows: repeat(2, auto);
   gap: 1rem;
 }
 
@@ -1187,7 +1187,7 @@ summary:focus-visible,
    inverting: a black slab used to cut the ivory workshop band in half. */
 .collectionFeatured {
   overflow: hidden;
-  grid-row: 1 / span 3;
+  grid-row: 1 / span 2;
   padding: 0;
   background: rgba(253, 250, 245, .9);
   box-shadow: 0 1.4rem 3.4rem rgba(41, 33, 24, .07);
@@ -1228,13 +1228,11 @@ summary:focus-visible,
   font-size: .86rem;
 }
 
-.collectionCard p + p,
-.collectionCard p + pre,
-.collectionCard pre + p {
+.collectionCard p + p {
   margin-top: .75rem;
 }
 
-/* The featured card is as tall as the three stacked cards beside it. Give the
+/* The featured card is as tall as the two stacked cards beside it. Give the
    slack to the screenshot rather than leaving it as blank card under the text.
    `contain` over the screenshot's own chrome colour, so growing the frame never
    slices the graph — the bands read as more of the app's canvas. */
@@ -1741,35 +1739,6 @@ code {
 
 .honestNote strong {
   color: var(--gold-hi);
-}
-
-/* ── SpoolSmith command snippet ─────────────────────────── */
-.cmdSnippet {
-  overflow-x: auto;
-  margin: .9rem 0;
-  padding: .85rem 1rem;
-  border: 1px solid rgba(255, 255, 255, .1);
-  border-radius: .45rem;
-  background: var(--ink);
-  color: var(--ivory);
-  font: 500 .72rem/1.7 ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace;
-  white-space: pre-wrap;
-  overflow-wrap: anywhere;
-}
-
-.cmdSnippet code {
-  padding: 0;
-  border: 0;
-  background: none;
-  color: inherit;
-  font: inherit;
-  word-break: normal;
-}
-
-.cmdPrompt {
-  margin-right: .55rem;
-  color: var(--gold);
-  user-select: none;
 }
 
 /* ── Lab strip (light band) ─────────────────────────────── */
