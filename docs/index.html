@@ -124,7 +124,7 @@
       <div class="heroCopy">
         <p class="kicker"><span class="liveDot" aria-hidden="true"></span> Independent software studio · Indianapolis</p>
         <h1 id="hero-title">Operational software, <em>tailored to the work.</em></h1>
-        <p class="heroLead">Self-hostable tools for MSPs and internal IT teams: a service desk with device context, voicemail triage, cross-tenant Microsoft operations, and a few smaller utilities. Three ship an MCP server, so your AI agents can work the same data within limits you set.</p>
+        <p class="heroLead">Self-hostable tools for MSPs and internal IT teams: a service desk with device context, an RMM, voicemail triage, cross-tenant Microsoft operations, and remote access to one device at a time. Three ship an MCP server, so your AI agents can work the same data within limits you set.</p>
         <div class="ctaRow">
           <a class="btn btnPrimary" href="#products">Explore the products <span aria-hidden="true">↓</span></a>
           <a class="btn btnGhost" href="https://github.com/Spillers-Technology" target="_blank" rel="noopener">View public source <span aria-hidden="true">↗</span></a>
@@ -145,24 +145,34 @@
         </div>
         <div class="releaseList">
           <a href="https://github.com/Spillers-Technology/AnchorDesk/releases/latest" target="_blank" rel="noopener">
-            <span class="productGlyph glyphGold" aria-hidden="true">A</span>
+            <span class="appTile" aria-hidden="true"><img src="assets/apps/anchordesk.png" alt="" width="32" height="32"></span>
             <span><strong>AnchorDesk</strong><small>Service desk + device context</small></span>
-            <b>Latest ↗</b>
+            <b>v2.10 ↗</b>
           </a>
           <a href="https://github.com/Spillers-Technology/ComFlow/releases/latest" target="_blank" rel="noopener">
-            <span class="productGlyph glyphViolet" aria-hidden="true">C</span>
+            <span class="appTile" aria-hidden="true"><span class="appMono" style="--hue:268">CF</span></span>
             <span><strong>ComFlow</strong><small>Voice → structured work</small></span>
-            <b>Latest ↗</b>
+            <b>v4.1 ↗</b>
           </a>
           <a href="https://github.com/Spillers-Technology/PartnerCenterBridge/releases/latest" target="_blank" rel="noopener">
-            <span class="productGlyph glyphSky" aria-hidden="true">P</span>
+            <span class="appTile" aria-hidden="true"><img src="assets/apps/partnercenterbridge.png" alt="" width="32" height="32"></span>
             <span><strong>Partner Center Bridge</strong><small>Cross-tenant Microsoft ops</small></span>
-            <b>Pre-1.0 ↗</b>
+            <b>v0.10 · Pre-1.0 ↗</b>
           </a>
           <a href="https://github.com/Spillers-Technology/netviz/releases/latest" target="_blank" rel="noopener">
-            <span class="productGlyph glyphMint" aria-hidden="true">N</span>
+            <span class="appTile" aria-hidden="true"><img src="assets/apps/netviz.png" alt="" width="32" height="32"></span>
             <span><strong>NetViz</strong><small>LAN discovery · Windows + Linux</small></span>
-            <b>Download ↗</b>
+            <b>v1.1 ↗</b>
+          </a>
+          <a href="https://github.com/spilloid/portGlass/releases/latest" target="_blank" rel="noopener">
+            <span class="appTile" aria-hidden="true"><img src="assets/apps/portglass.png" alt="" width="32" height="32"></span>
+            <span><strong>PortGlass</strong><small>One device's web UI, no VPN</small></span>
+            <b>v0.4 · Pre-1.0 ↗</b>
+          </a>
+          <a href="https://github.com/spilloid/flyw8t/releases" target="_blank" rel="noopener">
+            <span class="appTile" aria-hidden="true"><img src="assets/apps/flyw8t.png" alt="" width="32" height="32"></span>
+            <span><strong>flyw8t</strong><small>RMM that never pretends</small></span>
+            <b>v0.1 · Pre-release ↗</b>
           </a>
         </div>
         <div class="consoleFoot">
@@ -195,7 +205,7 @@
           </a>
           <div class="showcaseBody">
             <div class="productMeta"><span>MIT licensed · Self-hosted</span><span>Deployment support</span></div>
-            <h3>AnchorDesk</h3>
+            <h3 class="withTile"><span class="appTile" aria-hidden="true"><img src="assets/apps/anchordesk.png" alt="" width="32" height="32"></span>AnchorDesk</h3>
             <p class="productPitch">Your service desk, anchored to your data.</p>
             <p>Local-first ticketing for MSPs and IT teams, with email-to-ticket, SLA automation, device context, RMM actions, a customer portal, append-only audit records, and authenticated agent workflows.</p>
             <ul class="compactPoints">
@@ -218,7 +228,7 @@
           </a>
           <div class="showcaseBody">
             <div class="productMeta"><span>MIT licensed · Self-hosted or hosted</span><span>Hosted access</span></div>
-            <h3>ComFlow</h3>
+            <h3 class="withTile"><span class="appTile" aria-hidden="true"><span class="appMono" style="--hue:268">CF</span></span>ComFlow</h3>
             <p class="productPitch">Voicemail that arrives ready to act on.</p>
             <p>A voicemail regulator — deliberately not an AI receptionist. It answers over SIP, transcribes and structures each message, puts everything in one review inbox, and turns the right calls into AnchorDesk tickets.</p>
             <ul class="compactPoints">
@@ -243,7 +253,7 @@
         </a>
         <div class="showcaseBody">
           <div class="productMeta"><span>MIT licensed · Pre-1.0 · Self-hosted</span><span>Deployment support</span></div>
-          <h3>Partner Center Bridge</h3>
+          <h3 class="withTile"><span class="appTile" aria-hidden="true"><img src="assets/apps/partnercenterbridge.png" alt="" width="32" height="32"></span>Partner Center Bridge</h3>
           <p class="productPitch">Every customer tenant, one reconcile loop.</p>
           <p>An ASP.NET Core API and React console in front of Microsoft Graph and the Partner Center API. A contract declares the desired state — starting with Win32 app templates — and the bridge reconciles every tenant on it, replacing repeat portal archaeology with reviewable, audited runs.</p>
           <ul class="compactPoints">
@@ -278,7 +288,7 @@
             </a>
             <div class="collectionBody">
               <span class="maturity maturityReady">1.0 · Signed Windows build</span>
-              <h3>NetViz</h3>
+              <h3 class="withTile"><span class="appTile" aria-hidden="true"><img src="assets/apps/netviz.png" alt="" width="32" height="32"></span>NetViz</h3>
               <p>An open-source LAN scanner and network visualizer with a native Go scan engine. Devices appear live in a table, a grouped graph, and a hierarchy map. No agents, accounts, or Nmap.</p>
               <ul class="compactPoints">
                 <li>TCP-connect discovery of common LAN ports — no raw packets, drivers, or special privileges</li>
@@ -298,7 +308,7 @@
           <article class="collectionCard">
             <span class="collectionNumber" aria-hidden="true">01</span>
             <span class="maturity maturityBuild">Pre-1.0</span>
-            <h3>RetroSpool</h3>
+            <h3 class="withTile"><span class="appTile" aria-hidden="true"><span class="appMono" style="--hue:200">RS</span></span>RetroSpool</h3>
             <p>AS/400 reports as PDFs. It splits IBM i PCL spool output and renders it to PDF, with a multi-tenant operator console and self-serve connection intake. The queue poller and S3/SFTP export are planned, not built.</p>
             <div class="openActions">
               <a href="https://spillerstech.us/RetroSpool/">Explore →</a>
@@ -309,12 +319,39 @@
           <article class="collectionCard">
             <span class="collectionNumber" aria-hidden="true">02</span>
             <span class="maturity maturityTrial">Public trial</span>
-            <h3>OpsQuest</h3>
+            <h3 class="withTile"><span class="appTile" aria-hidden="true"><span class="appMono" style="--hue:140">OQ</span></span>OpsQuest</h3>
             <p>Practice the technical and human sides of support: 20 branching tickets, separate Tech and People scoring, skill drills, and debriefs. Works offline; the Android app is on GitHub Releases.</p>
             <div class="openActions">
               <a href="https://spillerstech.us/OpsQuest/">Explore →</a>
               <a href="https://github.com/Spillers-Technology/OpsQuest/releases/latest" target="_blank" rel="noopener">Get the app ↗</a>
               <a href="https://github.com/Spillers-Technology/OpsQuest" target="_blank" rel="noopener">Source ↗</a>
+            </div>
+          </article>
+        </div>
+
+        <div class="collectionPair">
+          <article class="collectionCard">
+            <span class="collectionNumber" aria-hidden="true">03</span>
+            <span class="maturity maturityBuild">Pre-1.0 · v0.4 · Signed Windows build</span>
+            <h3 class="withTile"><span class="appTile" aria-hidden="true"><img src="assets/apps/portglass.png" alt="" width="32" height="32"></span>PortGlass</h3>
+            <p>Operate one web interface on a remote LAN as if it were on your desk, without a VPN, remote desktop, or routing a whole network. A small probe forwards one approved device; you see it in an isolated browser that is cleared when the session ends.</p>
+            <p>Both ends pin each other&rsquo;s certificate over TLS 1.3, and the probe&rsquo;s own allow-list decides every destination. Independently security-reviewed; open findings are listed publicly.</p>
+            <div class="openActions">
+              <a href="https://spilloid.github.io/portGlass/">Explore →</a>
+              <a href="https://github.com/spilloid/portGlass/releases/latest" target="_blank" rel="noopener">Download ↗</a>
+              <a href="https://github.com/spilloid/portGlass" target="_blank" rel="noopener">Source ↗</a>
+            </div>
+          </article>
+
+          <article class="collectionCard">
+            <span class="collectionNumber" aria-hidden="true">04</span>
+            <span class="maturity maturityBuild">Pre-release · v0.1 · Not production-ready</span>
+            <h3 class="withTile"><span class="appTile" aria-hidden="true"><img src="assets/apps/flyw8t.png" alt="" width="32" height="32"></span>flyw8t</h3>
+            <p>Remote monitoring and management for MSP technicians, in Rust. Its rule: an operation succeeds with evidence, fails with an explanation, or says its outcome is unknown, never anything in between.</p>
+            <p>A Windows agent with a crash-safe job journal, a web console that works without JavaScript, consent-based attended screen sharing, and a JSON API built to plug into AnchorDesk.</p>
+            <div class="openActions">
+              <a href="https://github.com/spilloid/flyw8t/releases" target="_blank" rel="noopener">Releases ↗</a>
+              <a href="https://github.com/spilloid/flyw8t" target="_blank" rel="noopener">Source ↗</a>
             </div>
           </article>
         </div>

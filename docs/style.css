@@ -1820,6 +1820,70 @@ code {
   color: var(--gold-hi);
 }
 
+/* ── App tiles ─────────────────────────────────────────────
+   Every product's mark sits in the same rounded frame, so icons drawn in
+   different styles read as one collection. Products without a mark get a
+   Fraunces monogram tinted by --hue. */
+.appTile {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 2.3rem;
+  height: 2.3rem;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: .6rem;
+  background: linear-gradient(160deg, #1d1d24, #0c0c10);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .06), 0 .4rem 1rem -.5rem rgba(0, 0, 0, .7);
+}
+
+.appTile img {
+  width: 1.95rem;
+  height: 1.95rem;
+  border-radius: .45rem;
+  object-fit: contain;
+}
+
+.appMono {
+  --hue: 40;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(160deg, hsl(var(--hue) 40% 22%), hsl(var(--hue) 35% 10%));
+  color: hsl(var(--hue) 90% 84%);
+  font: 600 .9rem/1 var(--display);
+  letter-spacing: .02em;
+}
+
+.withTile {
+  display: flex;
+  align-items: center;
+  gap: .7rem;
+}
+
+.withTile .appTile {
+  width: 2.6rem;
+  height: 2.6rem;
+  border-radius: .7rem;
+}
+
+.withTile .appTile img { width: 2.2rem; height: 2.2rem; }
+
+/* On the ivory workshop band the dark tile is the frame. */
+.lightBand .appTile { border-color: rgba(23, 20, 25, .2); }
+
+.collectionPair {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+@media (max-width: 780px) {
+  .collectionPair { grid-template-columns: 1fr; }
+}
+
 @media (max-width: 1120px) {
   .hero {
     grid-template-columns: minmax(0, 1fr) minmax(22rem, .82fr);

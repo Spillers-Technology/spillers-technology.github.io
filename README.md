@@ -13,7 +13,7 @@ than résumé-first.
 
 1. **Hero** — the studio's purpose and a release-linked console of the four flagship downloads.
 2. **Headliners** — AnchorDesk and ComFlow with real screenshots, plus Partner Center Bridge as a wide third feature; each states its license and maturity.
-3. **More from the workshop** — NetViz (featured), RetroSpool, and OpsQuest, followed by an "Off the clock" strip for Corporate-Simulator and SpillerMug.
+3. **More from the workshop** — NetViz (featured), RetroSpool, and OpsQuest, then PortGlass and flyw8t, followed by an "Off the clock" strip for Corporate-Simulator and SpillerMug.
 4. **Custom software** — the operational-workflow service offer, capability tags, and method.
 5. **Founder** — a concise explanation of Joey's operator and engineering mix.
 6. **Contact** — email, public source, and a disclosed ComFlow demo line.
@@ -37,6 +37,8 @@ BSD-2-Clause. Public source is still described separately from open-source licen
   submission intake work. The queue poller and the S3/SFTP export fan-out are marked
   *planned* in the repo — say "planned, not built", not "in development".
 - **OpsQuest** — public trial (Android APK on GitHub Releases).
+- **PortGlass** — pre-1.0 (v0.4); signed Windows build; security-reviewed, open findings public.
+- **flyw8t** — pre-release (v0.1); not production-ready, unsigned binaries.
 - **Corporate-Simulator** — pre-1.0 replay MVP; live model seats are planned.
 - **SpillerMug** — playable browser game.
 
@@ -44,6 +46,7 @@ BSD-2-Clause. Public source is still described separately from open-source licen
 
 - `docs/` — static files served by GitHub Pages from `main:/docs`.
 - `docs/index.html` / `docs/style.css` — the complete storefront; no build step.
+- `docs/assets/apps/` — each product's icon at 192 px, shown in a shared tile (`.appTile`); products without a mark get a monogram (`.appMono`). Update the hero version labels on release.
 - `docs/assets/` — product screenshots (AnchorDesk, ComFlow, Partner Center Bridge, NetViz), the social card, and dependency-free
   interaction scripts.
 - `docs/privacy.html` — plain-language disclosure for website replay and the
